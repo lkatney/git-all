@@ -6,9 +6,7 @@ var rm = require('rimraf').sync
  * Expose `download`.
  */
 
-module.exports = {
-  download: download
-}
+module.exports = download
 
 /**
  * Download `repo` to `dest` and callback `fn(err)`.
@@ -19,7 +17,7 @@ module.exports = {
  * @param {Function} fn
  */
 
-function download(repo, dest, opts, fn) {
+function download (repo, dest, opts, fn) {
   if (typeof opts === 'function') {
     fn = opts
     opts = null
@@ -31,10 +29,7 @@ function download(repo, dest, opts, fn) {
   var url = repo.url || getUrl(repo, clone)
 
   if (clone) {
-    gitclone(url, dest, {
-      checkout: repo.checkout,
-      shallow: repo.checkout === 'master'
-    }, function (err) {
+    gitclone(url, dest, { checkout: repo.checkout, shallow: repo.checkout === 'master' }, function (err) {
       if (err === undefined) {
         rm(dest + '/.git')
         fn()
@@ -43,14 +38,7 @@ function download(repo, dest, opts, fn) {
       }
     })
   } else {
-    downloadUrl(url, dest, {
-        extract: true,
-        strip: 1,
-        mode: '666',
-        headers: {
-          accept: 'application/zip'
-        }
-      })
+    downloadUrl(url, dest, { extract: true, strip: 1, mode: '666', headers: { accept: 'application/zip' } })
       .then(function (data) {
         fn()
       })
@@ -67,7 +55,7 @@ function download(repo, dest, opts, fn) {
  * @return {Object}
  */
 
-function normalize(repo) {
+function normalize (repo) {
   var regex = /^(?:(direct):([^#]+)(?:#(.+))?)$/
   var match = regex.exec(repo)
 
@@ -115,7 +103,7 @@ function normalize(repo) {
  * @return {String}
  */
 
-function addProtocol(origin, clone) {
+function addProtocol (origin, clone) {
   if (!/^(f|ht)tps?:\/\//i.test(origin)) {
     if (clone)
       origin = 'git@' + origin
@@ -133,7 +121,7 @@ function addProtocol(origin, clone) {
  * @return {String}
  */
 
-function getUrl(repo, clone) {
+function getUrl (repo, clone) {
   var url
 
   // Get origin with protocol and add trailing slash or colon (for ssh)

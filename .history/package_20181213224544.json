@@ -1,13 +1,11 @@
 {
-  "name": "git-all",
-  "version": "0.0.1",
+  "name": "download-git-repo",
+  "version": "1.1.0",
   "license": "MIT",
   "repository": "git://github.com/flipxfx/download-git-repo",
-  "description": "Download/extract and do basic operations with a git repository (GitHub, GitLab, Bitbucket) from node.",
+  "description": "Download and extract a git repository (GitHub, GitLab, Bitbucket) from node.",
   "keywords": [
     "download",
-    "pull",
-    "push",
     "github",
     "bitbucket",
     "repo",
